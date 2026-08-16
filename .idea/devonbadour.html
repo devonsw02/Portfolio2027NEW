@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devon Ba Dour</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            color: #F9F6EE;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        :root {
+            --page-padding: 2rem;
+            --gallery-gutter: 1rem;
+            --small-text: 11px;
+            --body-text: 16px;
+            --large-text: clamp(3.5rem, 8vw, 9rem);
+        }
+
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem var(--page-padding);
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            column-gap: 2rem;
+            align-items: start;
+            z-index: 1000;
+        }
+
+        .nav-name,
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            line-height: 1;
+            transition: opacity 0.25s ease;
+        }
+
+        .nav-name {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-name:hover,
+        .nav-link:hover {
+            opacity: 0.5;
+        }
+
+        .site-header {
+            min-height: 100vh;
+            padding: 10rem var(--page-padding) 5rem var(--page-padding);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .intro-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: var(--small-text);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .intro-label {
+            opacity: 0.7;
+        }
+
+        .intro-description {
+            max-width: 320px;
+            margin: 0;
+            font-size: var(--body-text);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .name-animation {
+            margin: 0;
+            font-size: var(--large-text);
+            font-weight: 500;
+            line-height: 0.82;
+            letter-spacing: -0.055em;
+            word-spacing: 0;
+            overflow: hidden;
+        }
+
+        .name-animation span {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(120%);
+            filter: blur(12px);
+            animation: letterReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .name-animation span:nth-child(1) { animation-delay: 0.05s; }
+        .name-animation span:nth-child(2) { animation-delay: 0.09s; }
+        .name-animation span:nth-child(3) { animation-delay: 0.13s; }
+        .name-animation span:nth-child(4) { animation-delay: 0.17s; }
+        .name-animation span:nth-child(5) { animation-delay: 0.21s; }
+        .name-animation span:nth-child(6) { animation-delay: 0.25s; }
+        .name-animation span:nth-child(7) { animation-delay: 0.29s; }
+        .name-animation span:nth-child(8) { animation-delay: 0.33s; }
+        .name-animation span:nth-child(9) { animation-delay: 0.37s; }
+        .name-animation span:nth-child(10) { animation-delay: 0.41s; }
+        .name-animation span:nth-child(11) { animation-delay: 0.45s; }
+        .name-animation span:nth-child(12) { animation-delay: 0.49s; }
+        .name-animation span:nth-child(13) { animation-delay: 0.53s; }
+
+        @keyframes letterReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(120%);
+                filter: blur(12px);
+            }
+
+            40% {
+                opacity: 1;
+                filter: blur(6px);
+            }
+
+            70% {
+                transform: translateY(-8%);
+                filter: blur(1px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .work-intro {
+            padding: 0 var(--page-padding) 5rem var(--page-padding);
+        }
+
+        .work-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .work-label {
+            font-size: var(--small-text);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .work-description {
+            margin: 0;
+            max-width: 720px;
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+        }
+
+        .portfolio {
+            padding: 0 var(--page-padding) 10rem var(--page-padding);
+        }
+
+        .gallery-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(249, 246, 238, 0.35);
+        }
+
+        .gallery-title {
+            margin: 0;
+            font-size: var(--small-text);
+            font-weight: 300;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .gallery-count {
+            font-size: var(--small-text);
+            line-height: 1;
+            opacity: 0.6;
+        }
+
+        .portfolio-grid {
+            width: 100%;
+            column-count: 2;
+            column-gap: var(--gallery-gutter);
+        }
+
+        .project {
+            position: relative;
+            display: block;
+            width: 100%;
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+            margin: 0 0 var(--gallery-gutter) 0;
+            color: inherit;
+            text-decoration: none;
+            background: #000000;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-media {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #000000;
+            border-radius: 8px;
+            transition: border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .project-media img,
+        .project-media video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+            transform: none;
+        }
+
+        .project-info {
+            position: relative;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            background: #000000;
+            color: #F9F6EE;
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 1;
+            opacity: 0;
+            transform: translateY(100%);
+            transition:
+                    height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    opacity 0.25s ease;
+        }
+
+        .project-title {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 300;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .project-type {
+            display: block;
+            text-align: right;
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .project:hover .project-info {
+            height: 28px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project:hover .project-media {
+            border-radius: 4px 4px 0 0;
+        }
+
+        .portfolio-grid:hover .project:not(:hover) {
+            opacity: 0.55;
+        }
+
+        .site-footer {
+            padding: 0 var(--page-padding) 2rem var(--page-padding);
+        }
+
+        .footer-line {
+            width: 100%;
+            height: 1px;
+            background: rgba(249, 246, 238, 0.35);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .footer-name {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .footer-link {
+            color: #F9F6EE;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            text-decoration: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.5;
+        }
+
+        .footer-bottom {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            line-height: 1;
+            opacity: 0.55;
+        }
+
+        @media (max-width: 700px) {
+            :root {
+                --page-padding: 1rem;
+                --gallery-gutter: 0.75rem;
+            }
+
+            .site-nav {
+                position: relative;
+                padding: 1rem;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .nav-name {
+                grid-column: span 2;
+                font-size: 14px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+            }
+
+            .site-header {
+                min-height: 85vh;
+                padding: 7rem 1rem 3rem 1rem;
+            }
+
+            .intro-top {
+                display: block;
+            }
+
+            .intro-description {
+                margin-top: 1rem;
+                max-width: 260px;
+                font-size: 15px;
+            }
+
+            .name-animation {
+                font-size: clamp(3rem, 14vw, 6rem);
+            }
+
+            .work-intro {
+                padding: 0 1rem 4rem 1rem;
+            }
+
+            .work-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .work-description {
+                font-size: 1.7rem;
+            }
+
+            .portfolio {
+                padding: 0 1rem 6rem 1rem;
+            }
+
+            .gallery-header {
+                margin-bottom: 0.75rem;
+            }
+
+            .portfolio-grid {
+                column-count: 2;
+                column-gap: var(--gallery-gutter);
+            }
+
+            .project {
+                margin-bottom: var(--gallery-gutter);
+                border-radius: 3px;
+            }
+
+            .project-media {
+                border-radius: 2px;
+            }
+
+            .project-info {
+                padding: 0 6px;
+            }
+
+            .project-title {
+                font-size: 9px;
+            }
+
+            .project-type {
+                font-size: 9px;
+                font-weight: 300;
+                margin-left: 0.5rem;
+            }
+
+            .site-footer {
+                padding: 0 1rem 1rem 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .footer-name {
+                grid-column: span 2;
+            }
+
+            .footer-link {
+                font-size: 12px;
+            }
+
+            .footer-bottom {
+                margin-top: 4rem;
+                display: block;
+                line-height: 1.5;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav class="site-nav">
+
+    <a href="devonbadour.html" class="nav-name">DEVON BA DOUR</a>
+
+    <a href="devonbadour.html" class="nav-link">WORK</a>
+
+    <a href="resume.html" class="nav-link">RESUME</a>
+
+    <a href="reach-out.html" class="nav-link">REACH OUT!</a>
+
+</nav>
+
+<header class="site-header">
+
+    <div class="intro-top">
+
+        <span class="intro-label">Independent Designer</span>
+
+        <p class="intro-description">
+            Graphic design, identity, art direction,
+            motion and digital work.
+        </p>
+
+    </div>
+
+    <h1 class="name-animation" aria-label="Devon Ba Dour">
+        <span>D</span><span>e</span><span>v</span><span>o</span><span>n</span><span>&nbsp;</span><span>B</span><span>a</span><span>&nbsp;</span><span>D</span><span>o</span><span>u</span><span>r</span>
+    </h1>
+
+</header>
+
+<section class="work-intro">
+
+    <div class="work-intro-grid">
+
+        <div class="work-label">
+            Selected Work
+        </div>
+
+        <p class="work-description">
+            A collection of selected projects,
+            collaborations and visual experiments.
+        </p>
+
+    </div>
+
+</section>
+
+<main class="portfolio">
+
+    <div class="gallery-header">
+
+        <h2 class="gallery-title">
+            Projects
+        </h2>
+
+        <span class="gallery-count">
+10
+</span>
+
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+
+        <a class="project" href="murkywater.html">
+
+            <div class="project-media">
+
+                <img src="images/murkywater1.png" alt="Murky Water">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Murky Water
+</span>
+
+                <span class="project-type">
+Brand Design
+</span>
+
+            </div>
+
+        </a>
+
+        <a class="project" href="hem.html">
+
+            <div class="project-media">
+
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="videos/hem1.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+HEM
+</span>
+
+                <span class="project-type">
+Brand Design
+</span>
+
+            </div>
+
+        </a>
+
+        <a class="project" href="target.html">
+
+            <div class="project-media">
+
+                <img src="images/target1.png" alt="Target 2026 Ad Illustrations">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Target 2026 Ad Illustrations
+</span>
+
+                <span class="project-type">
+Illustration
+</span>
+
+            </div>
+        </a>
+
+        <a class="project" href="genero.html">
+
+            <div class="project-media">
+
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="videos/genero1.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Genero
+</span>
+
+                <span class="project-type">
+Packaging Design
+</span>
+
+            </div>
+
+        </a>
+
+        </a>
+
+        <a class="project" href="blattnerenergy.html">
+
+            <div class="project-media">
+
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="videos/blattner10.mp4" type="video/mp4">
+                </video>
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Blattner Energy
+</span>
+
+                <span class="project-type">
+Motion Design
+</span>
+
+            </div>
+
+        </a>
+
+        <a class="project" href="mndot.html">
+
+            <div class="project-media">
+
+                <img src="images/mndot1.png" alt="MNDot Board Game">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+MNDot Board Game
+</span>
+
+                <span class="project-type">
+Game Design
+</span>
+
+            </div>
+
+        </a>
+
+
+        <a class="project" href="bosco.html">
+
+            <div class="project-media">
+
+                <img src="images/bosco1.gif" alt="Bosco Pasta">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Bosco Pasta
+</span>
+
+                <span class="project-type">
+Packaging Design
+</span>
+
+            </div>
+
+        </a>
+
+        <a class="project" href="fitdrop.html">
+
+            <div class="project-media">
+
+                <img src="images/fitdrop1.jpg" alt="Fitdrop">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Fitdrop
+</span>
+
+                <span class="project-type">
+Product Design
+</span>
+
+            </div>
+
+        </a>
+
+        <a class="project" href="remedi.html">
+
+            <div class="project-media">
+
+                <img src="images/remedi1.jpg" alt="Remedi">
+
+            </div>
+
+            <div class="project-info">
+
+<span class="project-title">
+Remedi
+</span>
+
+                <span class="project-type">
+Packaging Design
+</span>
+
+            </div>
+
+    </div>
+
+</main>
+
+<footer class="site-footer">
+
+    <div class="footer-line"></div>
+
+    <div class="footer-grid">
+
+        <div class="footer-name">
+            DEVON BA DOUR
+        </div>
+
+        <a href="resume.html" class="footer-link">
+            RESUME
+        </a>
+
+        <a href="reach-out.html" class="footer-link">
+            REACH OUT!
+        </a>
+
+    </div>
+
+    <div class="footer-bottom">
+
+<span>
+© 2026 Devon Ba Dour
+</span>
+
+        <span>
+Minneapolis, MN
+</span>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

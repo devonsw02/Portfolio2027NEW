@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HEM — Devon Ba Dour</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            color: #F9F6EE;
+
+            font-family:
+                    Helvetica,
+                    Arial,
+                    sans-serif;
+
+            font-size: 14px;
+        }
+
+        :root {
+            --page-padding: 2rem;
+            --gallery-gutter: 0.5rem;
+            --small-text: 11px;
+            --body-text: 16px;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .site-nav {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            padding:
+                    1.5rem
+                    var(--page-padding);
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                auto
+                auto
+                auto;
+
+            column-gap: 2rem;
+
+            align-items: start;
+
+            z-index: 1000;
+        }
+
+        .nav-name,
+        .nav-link {
+            color: #ffffff;
+
+            text-decoration: none;
+
+            line-height: 1;
+
+            transition:
+                    opacity 0.25s ease;
+        }
+
+        .nav-name {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            letter-spacing:
+                    -0.01em;
+        }
+
+        .nav-link {
+            font-size: 14px;
+
+            font-weight: 400;
+
+            letter-spacing:
+                    -0.01em;
+        }
+
+        .nav-name:hover,
+        .nav-link:hover {
+            opacity: 0.5;
+        }
+
+
+        /* =========================
+           PROJECT HEADER
+        ========================= */
+
+        .project-header {
+            padding:
+                    11rem
+                    var(--page-padding)
+                    7rem
+                    var(--page-padding);
+        }
+
+        .project-title {
+            margin:
+                    0 0 8rem 0;
+
+            font-size:
+                    clamp(
+                            1.5rem,
+                            2.5vw,
+                            2.5rem
+                    );
+
+            font-weight: 500;
+
+            line-height: 0.95;
+
+            letter-spacing:
+                    -0.04em;
+        }
+
+
+        /* =========================
+           PROJECT TEXT
+        ========================= */
+
+        .project-text {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                2fr;
+
+            column-gap: 2rem;
+
+            align-items: start;
+
+            margin:
+                    0 0 5rem 0;
+        }
+
+        .text-heading {
+            margin: 0;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            line-height: 1.1;
+
+            text-transform: uppercase;
+
+            letter-spacing:
+                    0.02em;
+        }
+
+        .text-body {
+            margin: 0;
+
+            max-width: 720px;
+
+            font-size: 16px;
+
+            font-weight: 400;
+
+            line-height: 1.15;
+
+            letter-spacing:
+                    -0.02em;
+        }
+
+
+        /* =========================
+           GALLERY
+        ========================= */
+
+        .gallery {
+            width: 100%;
+
+            padding:
+                    0
+                    var(--page-padding)
+                    5rem
+                    var(--page-padding);
+        }
+
+        .gallery-row {
+            width: 100%;
+
+            display: flex;
+
+            align-items: stretch;
+
+            gap:
+                    var(--gallery-gutter);
+
+            margin:
+                    0 0
+                    var(--gallery-gutter)
+                    0;
+
+            overflow: hidden;
+        }
+
+        .gallery-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .gallery-item {
+            position: relative;
+
+            flex: 0 0 auto;
+
+            min-width: 0;
+
+            margin: 0;
+
+            padding: 0;
+
+            overflow: hidden;
+
+            background: #111111;
+
+            cursor: pointer;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            max-width: none;
+
+            object-fit: contain;
+
+            object-position: center;
+
+            transition:
+                    transform
+                    0.5s
+                    cubic-bezier(
+                            0.22,
+                            1,
+                            0.36,
+                            1
+                    ),
+
+                    opacity
+                    0.3s ease;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform:
+                    scale(1.015);
+        }
+
+
+        /* =========================
+           GALLERY TEXT
+        ========================= */
+
+        .gallery-text {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                2fr;
+
+            column-gap: 2rem;
+
+            align-items: start;
+
+            padding:
+                    6rem 0;
+
+            margin: 0;
+        }
+
+        .gallery-text-heading {
+            margin: 0;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            line-height: 1.1;
+
+            text-transform: uppercase;
+
+            letter-spacing:
+                    0.02em;
+        }
+
+        .gallery-text-body {
+            margin: 0;
+
+            max-width: 720px;
+
+            font-size: 16px;
+
+            line-height: 1.15;
+
+            letter-spacing:
+                    -0.02em;
+        }
+
+
+        /* =========================
+           LIGHTBOX
+        ========================= */
+
+        .lightbox {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                    rgba(
+                            0,
+                            0,
+                            0,
+                            0.92
+                    );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 4rem;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+            transition:
+                    opacity 0.3s ease,
+                    visibility 0.3s ease;
+
+            z-index: 2000;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+        }
+
+        .lightbox img,
+        .lightbox video {
+            display: block;
+
+            max-width: 95vw;
+
+            max-height: 90vh;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+            transform:
+                    scale(0.97);
+
+            transition:
+                    transform
+                    0.35s
+                    cubic-bezier(
+                            0.22,
+                            1,
+                            0.36,
+                            1
+                    );
+        }
+
+        .lightbox.active img,
+        .lightbox.active video {
+            transform:
+                    scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+
+            top: 2rem;
+
+            right: 2rem;
+
+            color: #fff;
+
+            font-size: 24px;
+
+            font-weight: 300;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            user-select: none;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.5;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .site-footer {
+            padding:
+                    0
+                    var(--page-padding)
+                    2rem
+                    var(--page-padding);
+        }
+
+        .footer-line {
+            width: 100%;
+
+            height: 1px;
+
+            background:
+                    rgba(
+                            249,
+                            246,
+                            238,
+                            0.35
+                    );
+
+            margin-bottom:
+                    1.5rem;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                auto
+                auto;
+
+            gap:
+                    2rem;
+
+            align-items:
+                    start;
+        }
+
+        .footer-name {
+            font-size: 14px;
+
+            font-weight: 600;
+
+            line-height: 1;
+        }
+
+        .footer-link {
+            color: #F9F6EE;
+
+            font-size: 14px;
+
+            font-weight: 400;
+
+            line-height: 1;
+
+            text-decoration: none;
+
+            transition:
+                    opacity
+                    0.25s ease;
+        }
+
+        .footer-link:hover {
+            opacity: 0.5;
+        }
+
+        .footer-bottom {
+            margin-top: 5rem;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 10px;
+
+            line-height: 1;
+
+            opacity: 0.55;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            :root {
+                --page-padding: 1rem;
+
+                --gallery-gutter: 0.35rem;
+            }
+
+            .site-nav {
+                position: relative;
+
+                padding: 1rem;
+
+                grid-template-columns:
+                    1fr
+                    1fr;
+
+                gap: 1rem;
+            }
+
+            .nav-name {
+                grid-column:
+                        span 2;
+
+                font-size: 14px;
+            }
+
+            .nav-link {
+                font-size: 12px;
+            }
+
+            .project-header {
+                padding:
+                        7rem
+                        1rem
+                        4rem
+                        1rem;
+            }
+
+            .project-title {
+                margin-bottom: 5rem;
+
+                font-size: 1.75rem;
+            }
+
+            .project-text {
+                grid-template-columns:
+                    1fr
+                    2fr;
+
+                column-gap:
+                        0.75rem;
+
+                margin-bottom: 4rem;
+            }
+
+            .text-heading {
+                font-size: 9px;
+            }
+
+            .text-body {
+                font-size: 12px;
+
+                line-height: 1.3;
+            }
+
+            .gallery {
+                padding:
+                        0
+                        1rem
+                        6rem
+                        1rem;
+            }
+
+            .gallery-row {
+                gap:
+                        var(--gallery-gutter);
+
+                margin-bottom:
+                        var(--gallery-gutter);
+            }
+
+            .gallery-text {
+                grid-template-columns:
+                    1fr
+                    2fr;
+
+                column-gap:
+                        0.75rem;
+
+                padding:
+                        4rem 0;
+            }
+
+            .gallery-text-heading {
+                font-size: 9px;
+            }
+
+            .gallery-text-body {
+                font-size: 12px;
+
+                line-height: 1.3;
+            }
+
+            .lightbox {
+                padding: 1rem;
+            }
+
+            .lightbox img,
+            .lightbox video {
+                max-width: 96vw;
+
+                max-height: 85vh;
+            }
+
+            .lightbox-close {
+                top: 1rem;
+
+                right: 1rem;
+
+                font-size: 20px;
+            }
+
+            .site-footer {
+                padding:
+                        0
+                        1rem
+                        1rem
+                        1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr
+                    1fr;
+
+                gap: 1rem;
+            }
+
+            .footer-name {
+                grid-column:
+                        span 2;
+            }
+
+            .footer-link {
+                font-size: 12px;
+            }
+
+            .footer-bottom {
+                margin-top: 4rem;
+
+                display: block;
+
+                line-height: 1.5;
+            }
+
+        }
+
+
+        /* =========================
+           REDUCED MOTION
+        ========================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration:
+                        0.01ms !important;
+
+                animation-iteration-count:
+                        1 !important;
+
+                transition-duration:
+                        0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<nav class="site-nav">
+
+    <a
+            href="devonbadour.html"
+            class="nav-name"
+    >
+        DEVON BA DOUR
+    </a>
+
+    <a
+            href="devonbadour.html"
+            class="nav-link"
+    >
+        WORK
+    </a>
+
+    <a
+            href="resume.html"
+            class="nav-link"
+    >
+        RESUME
+    </a>
+
+    <a
+            href="reach-out.html"
+            class="nav-link"
+    >
+        REACH OUT!
+    </a>
+
+</nav>
+
+
+<header class="project-header">
+
+    <h1 class="project-title">
+        HEM
+    </h1>
+
+
+    <section class="project-text">
+
+        <h2 class="text-heading">
+            PROJECT BRIEF
+        </h2>
+
+        <p class="text-body">
+            Conceptualize and design a visual identity
+            and advertising system for HEM.
+        </p>
+
+    </section>
+
+
+    <section class="project-text">
+
+        <h2 class="text-heading">
+            STRATEGY
+        </h2>
+
+        <p class="text-body">
+            A visual identity built around a
+            contemporary graphic language,
+            combining strong imagery and
+            structured composition.
+        </p>
+
+    </section>
+
+</header>
+
+
+<main class="gallery">
+
+
+    <!-- =========================
+         ROW 1
+         HEM 1 + HEM 2
+    ========================== -->
+
+    <div class="gallery-row">
+
+
+        <figure
+                class="gallery-item"
+                data-image="videos/hem1.mp4"
+                data-type="video"
+        >
+
+            <video
+                    src="videos/hem1.mp4"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+            >
+            </video>
+
+        </figure>
+
+
+        <figure
+                class="gallery-item"
+                data-image="images/hem2.jpg"
+                data-type="image"
+        >
+
+            <img
+                    src="images/hem2.png"
+                    alt="HEM 2"
+            >
+
+        </figure>
+
+
+    </div>
+
+
+    <!-- =========================
+         ROW 2
+         HEM 3 + HEM 4
+    ========================== -->
+
+    <div class="gallery-row">
+
+
+        <figure
+                class="gallery-item"
+                data-image="images/hem3.png"
+                data-type="image"
+        >
+
+            <img
+                    src="images/hem3.png"
+                    alt="HEM 3"
+            >
+
+        </figure>
+
+
+        <figure
+                class="gallery-item"
+                data-image="images/hem4.png"
+                data-type="image"
+        >
+
+            <img
+                    src="images/hem4.png"
+                    alt="HEM 4"
+            >
+
+        </figure>
+
+
+    </div>
+
+
+    <!-- =========================
+         TEXT
+    ========================== -->
+
+    <section class="gallery-text">
+
+        <h2 class="gallery-text-heading">
+            IDENTITY
+        </h2>
+
+
+        <p class="gallery-text-body">
+            The visual identity combines a
+            contemporary graphic system with
+            expressive imagery and a consistent
+            typographic structure.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ROW 3
+         HEM 5 + HEM 6
+    ========================== -->
+
+    <div class="gallery-row">
+
+
+        <figure
+                class="gallery-item"
+                data-image="images/hem5.png"
+                data-type="image"
+        >
+
+            <img
+                    src="images/hem5.png"
+                    alt="HEM 5"
+            >
+
+        </figure>
+
+
+        <figure
+                class="gallery-item"
+                data-image="images/hem6.png"
+                data-type="image"
+        >
+
+            <img
+                    src="images/hem6.png"
+                    alt="HEM 6"
+            >
+
+        </figure>
+
+
+    </div>
+
+
+    <!-- =========================
+         TEXT
+    ========================== -->
+
+    <section class="gallery-text">
+
+        <h2 class="gallery-text-heading">
+            APPLICATION
+        </h2>
+
+
+        <p class="gallery-text-body">
+            The system extends across digital,
+            printed and environmental applications,
+            allowing the identity to remain
+            consistent across different formats.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     LIGHTBOX
+========================= -->
+
+<div
+        class="lightbox"
+        id="lightbox"
+>
+
+    <div
+            class="lightbox-close"
+            id="lightboxClose"
+    >
+        ×
+    </div>
+
+
+    <div id="lightboxContent"></div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-line"></div>
+
+
+    <div class="footer-grid">
+
+        <div class="footer-name">
+            DEVON BA DOUR
+        </div>
+
+
+        <a
+                href="resume.html"
+                class="footer-link"
+        >
+            RESUME
+        </a>
+
+
+        <a
+                href="reach-out.html"
+                class="footer-link"
+        >
+            REACH OUT!
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Devon Ba Dour
+        </span>
+
+
+        <span>
+            Minneapolis, MN
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+
+    /* =========================
+       GALLERY SIZING
+    ========================= */
+
+    const galleryRows =
+        document.querySelectorAll(
+            ".gallery-row"
+        );
+
+
+    function getMediaRatio(media) {
+
+        if (
+            media.tagName.toLowerCase() ===
+            "video"
+        ) {
+
+            if (
+                media.videoWidth &&
+                media.videoHeight
+            ) {
+
+                return (
+                    media.videoWidth /
+                    media.videoHeight
+                );
+
+            }
+
+        }
+
+
+        if (
+            media.naturalWidth &&
+            media.naturalHeight
+        ) {
+
+            return (
+                media.naturalWidth /
+                media.naturalHeight
+            );
+
+        }
+
+
+        return 1;
+
+    }
+
+
+    function buildGallery() {
+
+        galleryRows.forEach(row => {
+
+            const items =
+                Array.from(
+                    row.querySelectorAll(
+                        ".gallery-item"
+                    )
+                );
+
+
+            if (!items.length) {
+                return;
+            }
+
+
+            const media =
+                items.map(
+                    item =>
+                        item.querySelector(
+                            "img, video"
+                        )
+                );
+
+
+            const calculate = () => {
+
+                const rowWidth =
+                    row.clientWidth;
+
+
+                const gap =
+                    parseFloat(
+                        getComputedStyle(row).gap
+                    ) || 0;
+
+
+                const totalGap =
+                    gap *
+                    (media.length - 1);
+
+
+                const ratios =
+                    media.map(
+                        getMediaRatio
+                    );
+
+
+                const totalRatio =
+                    ratios.reduce(
+                        (
+                            total,
+                            ratio
+                        ) =>
+                            total + ratio,
+                        0
+                    );
+
+
+                if (
+                    !rowWidth ||
+                    !totalRatio
+                ) {
+
+                    return;
+
+                }
+
+
+                const rowHeight =
+                    (
+                        rowWidth -
+                        totalGap
+                    ) /
+                    totalRatio;
+
+
+                items.forEach(
+                    (
+                        item,
+                        index
+                    ) => {
+
+                        const width =
+                            rowHeight *
+                            ratios[index];
+
+
+                        item.style.width =
+                            `${width}px`;
+
+
+                        item.style.height =
+                            `${rowHeight}px`;
+
+                    }
+                );
+
+            };
+
+
+            if (
+                media.every(
+                    element => {
+
+                        if (
+                            element.tagName.toLowerCase() ===
+                            "video"
+                        ) {
+
+                            return (
+                                element.readyState >= 1
+                            );
+
+                        }
+
+                        return element.complete;
+
+                    }
+                )
+            ) {
+
+                calculate();
+
+            }
+
+
+            media.forEach(
+                element => {
+
+                    if (
+                        element.tagName.toLowerCase() ===
+                        "video"
+                    ) {
+
+                        element.addEventListener(
+                            "loadedmetadata",
+                            calculate,
+                            {
+                                once: true
+                            }
+                        );
+
+                    } else {
+
+                        element.addEventListener(
+                            "load",
+                            calculate,
+                            {
+                                once: true
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    }
+
+
+    buildGallery();
+
+
+    let resizeTimer;
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+
+            resizeTimer =
+                setTimeout(
+                    buildGallery,
+                    100
+                );
+
+        }
+    );
+
+
+    /* =========================
+       LIGHTBOX
+    ========================= */
+
+    const galleryItems =
+        document.querySelectorAll(
+            ".gallery-item"
+        );
+
+
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
+
+
+    const lightboxContent =
+        document.getElementById(
+            "lightboxContent"
+        );
+
+
+    const lightboxClose =
+        document.getElementById(
+            "lightboxClose"
+        );
+
+
+    galleryItems.forEach(
+        item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    const media =
+                        item.getAttribute(
+                            "data-image"
+                        );
+
+
+                    const type =
+                        item.getAttribute(
+                            "data-type"
+                        );
+
+
+                    const originalMedia =
+                        item.querySelector(
+                            "img, video"
+                        );
+
+
+                    const alt =
+                        originalMedia.alt ||
+                        "HEM project image";
+
+
+                    lightboxContent.innerHTML =
+                        "";
+
+
+                    if (
+                        type === "video"
+                    ) {
+
+                        const video =
+                            document.createElement(
+                                "video"
+                            );
+
+
+                        video.src =
+                            media;
+
+
+                        video.autoplay =
+                            true;
+
+
+                        video.muted =
+                            true;
+
+
+                        video.loop =
+                            true;
+
+
+                        video.playsInline =
+                            true;
+
+
+                        video.controls =
+                            true;
+
+
+                        lightboxContent.appendChild(
+                            video
+                        );
+
+
+                    } else {
+
+                        const img =
+                            document.createElement(
+                                "img"
+                            );
+
+
+                        img.src =
+                            media;
+
+
+                        img.alt =
+                            alt;
+
+
+                        lightboxContent.appendChild(
+                            img
+                        );
+
+                    }
+
+
+                    lightbox.classList.add(
+                        "active"
+                    );
+
+
+                    document.body.style.overflow =
+                        "hidden";
+
+                }
+            );
+
+        }
+    );
+
+
+    function closeLightbox() {
+
+        lightbox.classList.remove(
+            "active"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+
+        lightboxContent.innerHTML =
+            "";
+
+    }
+
+
+    lightboxClose.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+
+    lightbox.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                lightbox
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
