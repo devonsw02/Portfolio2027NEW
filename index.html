@@ -32,7 +32,7 @@
             --gallery-gutter: 1rem;
             --small-text: 11px;
             --body-text: 16px;
-            --large-text: clamp(3.5rem, 8vw, 9rem);
+            --large-text: clamp(1.75rem, 4vw, 4.5rem);
         }
 
         .site-nav {
@@ -74,43 +74,49 @@
         }
 
         .site-header {
-            min-height: 100vh;
-            padding: 10rem var(--page-padding) 5rem var(--page-padding);
+            min-height: 0;
+            padding: 5rem var(--page-padding) 2rem var(--page-padding);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .intro-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+            align-items: start;
             font-size: var(--small-text);
             line-height: 1.2;
             text-transform: uppercase;
             letter-spacing: 0.02em;
         }
 
-        .intro-label {
-            opacity: 0.7;
-        }
-
         .intro-description {
+            grid-column: 2;
             max-width: 320px;
             margin: 0;
+            padding: 0;
             font-size: var(--body-text);
             line-height: 1.05;
             letter-spacing: -0.02em;
+            text-transform: uppercase;
+            align-self: start;
         }
 
         .name-animation {
+            grid-column: 1;
+            grid-row: 1;
             margin: 0;
+            padding: 0;
             font-size: var(--large-text);
             font-weight: 500;
             line-height: 0.82;
             letter-spacing: -0.055em;
             word-spacing: 0;
             overflow: hidden;
+            align-self: start;
         }
 
         .name-animation span {
@@ -162,7 +168,7 @@
         }
 
         .work-intro {
-            padding: 0 var(--page-padding) 5rem var(--page-padding);
+            padding: 0 var(--page-padding) 3rem var(--page-padding);
         }
 
         .work-intro-grid {
@@ -265,8 +271,6 @@
             padding: 0 10px;
             background: #000000;
             color: #F9F6EE;
-            font-size: 10px;
-            font-weight: 600;
             line-height: 1;
             opacity: 0;
             transform: translateY(100%);
@@ -279,8 +283,10 @@
         .project-title {
             display: block;
             text-align: left;
-            font-size: 14px;
-            font-weight: 300;
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -289,14 +295,16 @@
         .project-type {
             display: block;
             text-align: right;
-            font-size: 10px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
             white-space: nowrap;
             margin-left: 1rem;
         }
 
         .project:hover .project-info {
-            height: 28px;
+            height: 34px;
             opacity: 1;
             transform: translateY(0);
         }
@@ -378,26 +386,35 @@
             }
 
             .site-header {
-                min-height: 85vh;
-                padding: 7rem 1rem 3rem 1rem;
+                min-height: 0;
+                padding: 5rem 1rem 2rem 1rem;
             }
 
             .intro-top {
-                display: block;
-            }
-
-            .intro-description {
-                margin-top: 1rem;
-                max-width: 260px;
-                font-size: 15px;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 1rem;
+                align-items: start;
             }
 
             .name-animation {
-                font-size: clamp(3rem, 14vw, 6rem);
+                grid-column: 1;
+                grid-row: 1;
+                font-size: clamp(1.5rem, 7vw, 3rem);
+                align-self: start;
+            }
+
+            .intro-description {
+                grid-column: 2;
+                grid-row: 1;
+                max-width: 260px;
+                margin: 0;
+                padding: 0;
+                font-size: 15px;
+                align-self: start;
             }
 
             .work-intro {
-                padding: 0 1rem 4rem 1rem;
+                padding: 0 1rem 2.5rem 1rem;
             }
 
             .work-intro-grid {
@@ -435,13 +452,19 @@
                 padding: 0 6px;
             }
 
+            .project:hover .project-info {
+                height: 30px;
+            }
+
             .project-title {
-                font-size: 9px;
+                font-size: 12px;
+                font-weight: 400;
+                letter-spacing: -0.015em;
             }
 
             .project-type {
                 font-size: 9px;
-                font-weight: 300;
+                font-weight: 500;
                 margin-left: 0.5rem;
             }
 
@@ -500,33 +523,21 @@
 
     <div class="intro-top">
 
-        <span class="intro-label">Independent Designer</span>
+        <h1 class="name-animation" aria-label="Devon Ba Dour">
+            <span>D</span><span>e</span><span>v</span><span>o</span><span>n</span><span>&nbsp;</span><span>B</span><span>a</span><span>&nbsp;</span><span>D</span><span>o</span><span>u</span><span>r</span>
+        </h1>
 
         <p class="intro-description">
-            Graphic design, identity, art direction,
-            motion and digital work.
+            GRAPHIC DESIGN. UX/UI DESIGN. MOTION DESIGN.
         </p>
 
     </div>
-
-    <h1 class="name-animation" aria-label="Devon Ba Dour">
-        <span>D</span><span>e</span><span>v</span><span>o</span><span>n</span><span>&nbsp;</span><span>B</span><span>a</span><span>&nbsp;</span><span>D</span><span>o</span><span>u</span><span>r</span>
-    </h1>
 
 </header>
 
 <section class="work-intro">
 
     <div class="work-intro-grid">
-
-        <div class="work-label">
-            Selected Work
-        </div>
-
-        <p class="work-description">
-            A collection of selected projects,
-            collaborations and visual experiments.
-        </p>
 
     </div>
 
@@ -537,12 +548,12 @@
     <div class="gallery-header">
 
         <h2 class="gallery-title">
-            Projects
+            PROJECTS
         </h2>
 
         <span class="gallery-count">
-10
-</span>
+            9
+        </span>
 
     </div>
 
@@ -551,21 +562,17 @@
         <a class="project" href="murkywater.html">
 
             <div class="project-media">
-
                 <img src="images/murkywater1.png" alt="Murky Water">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Murky Water
-</span>
+                <span class="project-title">
+                    MURKY WATER
+                </span>
 
                 <span class="project-type">
-Brand Design
-</span>
-
+                    BRAND DESIGN
+                </span>
             </div>
 
         </a>
@@ -581,15 +588,13 @@ Brand Design
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-HEM
-</span>
+                <span class="project-title">
+                    HEM
+                </span>
 
                 <span class="project-type">
-Brand Design
-</span>
-
+                    BRAND DESIGN
+                </span>
             </div>
 
         </a>
@@ -597,22 +602,19 @@ Brand Design
         <a class="project" href="target.html">
 
             <div class="project-media">
-
                 <img src="images/target1.png" alt="Target 2026 Ad Illustrations">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Target 2026 Ad Illustrations
-</span>
+                <span class="project-title">
+                    TARGET 2026 AD ILLUSTRATIONS
+                </span>
 
                 <span class="project-type">
-Illustration
-</span>
-
+                    ILLUSTRATION
+                </span>
             </div>
+
         </a>
 
         <a class="project" href="genero.html">
@@ -626,18 +628,14 @@ Illustration
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Genero
-</span>
+                <span class="project-title">
+                    GENERO
+                </span>
 
                 <span class="project-type">
-Packaging Design
-</span>
-
+                    PACKAGING DESIGN
+                </span>
             </div>
-
-        </a>
 
         </a>
 
@@ -652,15 +650,13 @@ Packaging Design
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Blattner Energy
-</span>
+                <span class="project-title">
+                    BLATTNER ENERGY
+                </span>
 
                 <span class="project-type">
-Motion Design
-</span>
-
+                    MOTION DESIGN
+                </span>
             </div>
 
         </a>
@@ -668,44 +664,35 @@ Motion Design
         <a class="project" href="mndot.html">
 
             <div class="project-media">
-
                 <img src="images/mndot1.png" alt="MNDot Board Game">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-MNDot Board Game
-</span>
+                <span class="project-title">
+                    MNDOT BOARD GAME
+                </span>
 
                 <span class="project-type">
-Game Design
-</span>
-
+                    GAME DESIGN
+                </span>
             </div>
 
         </a>
 
-
         <a class="project" href="bosco.html">
 
             <div class="project-media">
-
                 <img src="images/bosco1.gif" alt="Bosco Pasta">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Bosco Pasta
-</span>
+                <span class="project-title">
+                    BOSCO PASTA
+                </span>
 
                 <span class="project-type">
-Packaging Design
-</span>
-
+                    PACKAGING DESIGN
+                </span>
             </div>
 
         </a>
@@ -713,21 +700,17 @@ Packaging Design
         <a class="project" href="fitdrop.html">
 
             <div class="project-media">
-
                 <img src="images/fitdrop1.jpg" alt="Fitdrop">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Fitdrop
-</span>
+                <span class="project-title">
+                    FITDROP
+                </span>
 
                 <span class="project-type">
-Product Design
-</span>
-
+                    PRODUCT DESIGN
+                </span>
             </div>
 
         </a>
@@ -735,22 +718,20 @@ Product Design
         <a class="project" href="remedi.html">
 
             <div class="project-media">
-
                 <img src="images/remedi1.jpg" alt="Remedi">
-
             </div>
 
             <div class="project-info">
-
-<span class="project-title">
-Remedi
-</span>
+                <span class="project-title">
+                    REMEDI
+                </span>
 
                 <span class="project-type">
-Packaging Design
-</span>
-
+                    PACKAGING DESIGN
+                </span>
             </div>
+
+        </a>
 
     </div>
 
@@ -778,17 +759,18 @@ Packaging Design
 
     <div class="footer-bottom">
 
-<span>
-© 2026 Devon Ba Dour
-</span>
+        <span>
+            © 2026 DEVON BA DOUR
+        </span>
 
         <span>
-Minneapolis, MN
-</span>
+            MINNEAPOLIS, MN
+        </span>
 
     </div>
 
 </footer>
 
 </body>
+
 </html>
