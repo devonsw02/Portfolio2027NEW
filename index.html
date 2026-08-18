@@ -87,6 +87,7 @@
             grid-template-columns: 1fr 1fr;
             column-gap: 2rem;
             align-items: start;
+            overflow: visible;
             font-size: var(--small-text);
             line-height: 1.2;
             text-transform: uppercase;
@@ -115,7 +116,7 @@
             line-height: 0.82;
             letter-spacing: -0.055em;
             word-spacing: 0;
-            overflow: hidden;
+            overflow: visible;
             align-self: start;
         }
 
@@ -124,40 +125,41 @@
             margin: 0;
             padding: 0;
             opacity: 0;
-            transform: translateY(120%);
-            filter: blur(12px);
-            animation: letterReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            transform: translateY(115%);
+            filter: blur(10px);
+            animation: letterReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
         }
 
-        .name-animation span:nth-child(1) { animation-delay: 0.05s; }
-        .name-animation span:nth-child(2) { animation-delay: 0.09s; }
-        .name-animation span:nth-child(3) { animation-delay: 0.13s; }
-        .name-animation span:nth-child(4) { animation-delay: 0.17s; }
-        .name-animation span:nth-child(5) { animation-delay: 0.21s; }
-        .name-animation span:nth-child(6) { animation-delay: 0.25s; }
-        .name-animation span:nth-child(7) { animation-delay: 0.29s; }
-        .name-animation span:nth-child(8) { animation-delay: 0.33s; }
-        .name-animation span:nth-child(9) { animation-delay: 0.37s; }
-        .name-animation span:nth-child(10) { animation-delay: 0.41s; }
-        .name-animation span:nth-child(11) { animation-delay: 0.45s; }
-        .name-animation span:nth-child(12) { animation-delay: 0.49s; }
-        .name-animation span:nth-child(13) { animation-delay: 0.53s; }
+        .name-animation span:nth-child(1) { animation-delay: 0.180s; }
+        .name-animation span:nth-child(2) { animation-delay: 0.215s; }
+        .name-animation span:nth-child(3) { animation-delay: 0.250s; }
+        .name-animation span:nth-child(4) { animation-delay: 0.285s; }
+        .name-animation span:nth-child(5) { animation-delay: 0.320s; }
+        .name-animation span:nth-child(6) { animation-delay: 0.355s; }
+        .name-animation span:nth-child(7) { animation-delay: 0.390s; }
+        .name-animation span:nth-child(8) { animation-delay: 0.425s; }
+        .name-animation span:nth-child(9) { animation-delay: 0.460s; }
+        .name-animation span:nth-child(10) { animation-delay: 0.495s; }
+        .name-animation span:nth-child(11) { animation-delay: 0.530s; }
+        .name-animation span:nth-child(12) { animation-delay: 0.565s; }
+        .name-animation span:nth-child(13) { animation-delay: 0.600s; }
 
         @keyframes letterReveal {
             0% {
                 opacity: 0;
-                transform: translateY(120%);
-                filter: blur(12px);
+                transform: translateY(115%);
+                filter: blur(10px);
             }
 
-            40% {
+            45% {
                 opacity: 1;
-                filter: blur(6px);
+                transform: translateY(8%);
+                filter: blur(3px);
             }
 
-            70% {
-                transform: translateY(-8%);
-                filter: blur(1px);
+            72% {
+                transform: translateY(-3%);
+                filter: blur(0.5px);
             }
 
             100% {
@@ -664,7 +666,7 @@
         <a class="project" href="mndot.html">
 
             <div class="project-media">
-                <img src="images/mndot1.png" alt="MNDot Board Game">
+                <img src="images/mndot1.jpg" alt="MNDot Board Game">
             </div>
 
             <div class="project-info">
